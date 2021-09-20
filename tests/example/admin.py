@@ -23,9 +23,6 @@ class ExampleGDPRModelAdmin(AnonymizableAdminMixin, admin.ModelAdmin):
         )}),
     )
 
-    def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
-        return super().render_change_form(request, context, add, change, form_url, obj)
-
 
 class ExampleGDPRModelTabularInline(AnonymizableAdminMixin, admin.TabularInline):
     model = ExampleGDPRModel

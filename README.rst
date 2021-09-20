@@ -28,30 +28,65 @@ Install django-anonimizable-model::
 Add it to your `INSTALLED_APPS`:
 
 .. code-block:: python
-
     INSTALLED_APPS = (
         ...
-        'django_anonimizable_model.apps.DjangoAnonimizableModelConfig',
+        'django_anonimizable_model',
         ...
     )
 
-Add django-anonimizable-model's URL patterns:
+Use on your models like this:
 
 .. code-block:: python
+    @anonymizable(
+    db_label_prefix="pa_",
+    anonymizable_fields=["first_name", "last_name", "phone_number"]
+    )
+    class ExampleGDPRModel(models.Model):
+        objects = ExampleGDPRModelManager.from_queryset(ExampleGDPRModelQuerySet)()
 
-    from django_anonimizable_model import urls as django_anonimizable_model_urls
+        first_name = models.CharField("First name", max_length=255)
+        last_name = models.CharField("Last name", max_length=255)
+        phone_number = models.CharField("Phone number", max_length=255, blank=True, default="")
+        description = models.TextField("Description", blank=True, default="")
+
+It is possible to change db_label_prefix with your own label
+and assign anonymizable fields from the model for export and visualization features.
+
+And then run migrations:
+
+.. code-block:: shell
+    $ python manage.py makemigrations
+    $ python manage.py migrate
+
+For the admin visualization use AnonymizableAdminMixin class:
+
+.. code-block:: python
+    @admin.register(ExampleGDPRModel)
+    class ExampleGDPRModelAdmin(AnonymizableAdminMixin, admin.ModelAdmin):
+        list_display = (
+            "__str__",
+            "first_name",
+            "last_name",
+            "phone_number",
+            "description",
+        )
+
+        fieldsets = (
+            (None, {"fields": (
+                ("first_name", "last_name"),
+                ("phone_number", "description"),
+            )}),
+        )
+
+The admin can view all anonymized data in fields. If a staff user does not have can_view_anonymized_fields permission
+all the data in anonymizable_fields will be substituted with "...".
 
 
-    urlpatterns = [
-        ...
-        url(r'^', include(django_anonimizable_model_urls)),
-        ...
-    ]
 
 Features
 --------
 
-* TODO
+* Remove or override __str__ method to display "..." if user does not have permission
 
 Running Tests
 -------------
@@ -61,8 +96,8 @@ Does the code actually work?
 ::
 
     source <YOURVIRTUALENV>/bin/activate
-    (myenv) $ pip install tox
-    (myenv) $ tox
+    (myenv) $ pip install -r requirements_test.txt
+    (myenv) $ python manage.py test tests.example
 
 
 Development commands
@@ -71,7 +106,6 @@ Development commands
 ::
 
     pip install -r requirements_dev.txt
-    invoke -l
 
 
 Credits
