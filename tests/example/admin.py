@@ -41,4 +41,4 @@ class ExampleGDPRModelStackedInline(AnonymizableAdminMixin, admin.StackedInline)
 class ExampleGDPRParentModelAdmin(admin.ModelAdmin):
     list_display = ("title",)
     fields = ("title",)
-    inlines = [ExampleGDPRModelStackedInline]
+    inlines = [ExampleGDPRModelTabularInline, ExampleGDPRModelStackedInline]
