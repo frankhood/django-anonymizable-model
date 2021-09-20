@@ -27,7 +27,12 @@ class ExampleGDPRModelAdmin(AnonymizableAdminMixin, admin.ModelAdmin):
         return super().render_change_form(request, context, add, change, form_url, obj)
 
 
-class ExampleGDPRModelInline(AnonymizableAdminMixin, admin.TabularInline):
+class ExampleGDPRModelTabularInline(AnonymizableAdminMixin, admin.TabularInline):
+    model = ExampleGDPRModel
+    fields = ("first_name", "last_name", "phone_number", "description")
+
+
+class ExampleGDPRModelStackedInline(AnonymizableAdminMixin, admin.StackedInline):
     model = ExampleGDPRModel
     fields = ("first_name", "last_name", "phone_number", "description")
 
@@ -36,4 +41,4 @@ class ExampleGDPRModelInline(AnonymizableAdminMixin, admin.TabularInline):
 class ExampleGDPRParentModelAdmin(admin.ModelAdmin):
     list_display = ("title",)
     fields = ("title",)
-    inlines = [ExampleGDPRModelInline]
+    inlines = [ExampleGDPRModelStackedInline]

@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 import copy
 import logging
-from functools import partialmethod
 
-from django.contrib import admin
 from django.utils.translation import gettext as _
 
 logger = logging.getLogger(__name__)
@@ -57,9 +55,6 @@ class AnonymizableAdminMixin:
 
     def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
         if obj and obj.id and not request.user.has_perm("example.can_view_anonymized_fields"):
-            def str_anonymized(self):
-                return _(f"Anonymized Object {self.id}")
-
             context.update({
                 "subtitle": _(f"Anonymized Object {obj.id}"),
             })
