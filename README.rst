@@ -25,21 +25,19 @@ Install django-anonimizable-model::
 
     pip install django-anonimizable-model
 
-Add it to your `INSTALLED_APPS`:
+Add it to your `INSTALLED_APPS`::
 
-.. code-block:: python
     INSTALLED_APPS = (
         ...
         'django_anonimizable_model',
         ...
     )
 
-Use on your models like this:
+Use on your models like this::
 
-.. code-block:: python
     @anonymizable(
-    db_label_prefix="pa_",
-    anonymizable_fields=["first_name", "last_name", "phone_number"]
+        db_label_prefix="pa_",
+        anonymizable_fields=["first_name", "last_name", "phone_number"]
     )
     class ExampleGDPRModel(models.Model):
         objects = ExampleGDPRModelManager.from_queryset(ExampleGDPRModelQuerySet)()
@@ -52,15 +50,13 @@ Use on your models like this:
 It is possible to change db_label_prefix with your own label
 and assign anonymizable fields from the model for export and visualization features.
 
-And then run migrations:
+And then run migrations::
 
-.. code-block:: shell
     $ python manage.py makemigrations
     $ python manage.py migrate
 
-For the admin visualization use AnonymizableAdminMixin class:
+For the admin visualization use AnonymizableAdminMixin class::
 
-.. code-block:: python
     @admin.register(ExampleGDPRModel)
     class ExampleGDPRModelAdmin(AnonymizableAdminMixin, admin.ModelAdmin):
         list_display = (
