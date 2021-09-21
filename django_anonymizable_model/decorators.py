@@ -6,11 +6,6 @@ def anonymizable(db_label_prefix="pa_", anonymizable_fields=None):
     def display_anonymized_FIELD(self):
         return "..."
 
-    # def anonymized__str__(self):
-    #     if self and self.id:
-    #         return _(f"Anonymized Object {self.id}")
-    #     return _("Anonymized Object")
-
     def wrap(model_class):
         model_class.db_label_prefix = db_label_prefix
         model_class.anonymizable_fields = anonymizable_fields
