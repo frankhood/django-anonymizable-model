@@ -78,6 +78,9 @@ The admin can view all anonymized data in fields. If a staff user does not have 
 all the data in anonymizable_fields will be substituted with "...".
 
 
+Anonymize DATABASE
+------------------
+
 It is possible to anonymize data directly in database using::
 
     $ python manage.py anonymize_database

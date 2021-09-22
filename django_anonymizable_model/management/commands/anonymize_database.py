@@ -48,7 +48,8 @@ class Command(BaseCommand):
             msg = ""
             for model in get_anonymized_models():
                 def anonymize_field(obj, field):
-                    setattr(obj, field, "...")
+                    display_method = getattr(obj, "display_anonymized_"+ field)
+                    setattr(obj, field, display_method())
                     obj.save(update_fields=[field])
 
                 [[anonymize_field(obj, field) for field in model.anonymizable_fields] for obj in model.objects.all()]
