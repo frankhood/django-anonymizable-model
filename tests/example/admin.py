@@ -1,4 +1,5 @@
 import copy
+from typing import Any, Optional
 
 from django.contrib import admin
 
@@ -28,14 +29,13 @@ class ExampleGDPRModelTabularInline(AnonymizableAdminMixin, admin.TabularInline)
     model = ExampleGDPRModel
     fields = ("first_name", "last_name", "phone_number", "description")
 
-
 class ExampleGDPRModelStackedInline(AnonymizableAdminMixin, admin.StackedInline):
     model = ExampleGDPRModel
     fields = ("first_name", "last_name", "phone_number", "description")
 
 
 @admin.register(ExampleGDPRParentModel)
-class ExampleGDPRParentModelAdmin(admin.ModelAdmin):
+class ExampleGDPRParentModelAdmin(AnonymizableAdminMixin, admin.ModelAdmin):
     list_display = ("title",)
     fields = ("title",)
     inlines = [ExampleGDPRModelTabularInline, ExampleGDPRModelStackedInline]

@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import copy
+from itertools import chain
 import logging
+from typing import Any
+from django.utils.functional import empty
 
 from django.utils.translation import gettext as _
+from django.contrib.admin import helpers
 
 logger = logging.getLogger(__name__)
-
 
 class AnonymizableAdminMixin:
     DISPLAY_ANONYMIZE_PREFIX = "display_anonymized_"
@@ -18,47 +21,72 @@ class AnonymizableAdminMixin:
     def is_anonymizable(self):
         if hasattr(self.model, "anonymizable_fields"):
             return True
-        else:
-            logger.error(
-                _(
-                    f"anonymizable_fields not set in {self.model}, "
-                    f"add anonymizable decorator or register your model with anonymizable.register method"
-                )
-            )
-            raise Exception(
-                _(
-                    f"anonymizable_fields not set in {self.model}, "
-                    f"add anonymizable decorator or register your model with anonymizable.register method"
-                )
-            )
+        return False
 
     def get_readonly_fields(self, request, obj=None):
         readonly_fields = super().get_readonly_fields(request, obj)
-        readonly_fields = copy.deepcopy(readonly_fields)
         if self.is_anonymizable() and not request.user.has_perm("example.can_view_anonymized_fields"):
+            readonly_fields = copy.deepcopy(readonly_fields)
             readonly_fields = self.add_anonymizable_fields_to_readonly_fields(readonly_fields, self.model.anonymizable_fields)
         return readonly_fields
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj)
-        fieldsets = copy.deepcopy(fieldsets)
         if self.is_anonymizable() and not request.user.has_perm("example.can_view_anonymized_fields"):
+            fieldsets = copy.deepcopy(fieldsets)
             fieldsets = self.substitute_anonymizable_fields_from_fieldset(fieldsets, self.model.anonymizable_fields)
         return fieldsets
 
     def get_list_display(self, request):
         list_display = super().get_list_display(request)
-        list_display = copy.deepcopy(list_display)
         if self.is_anonymizable() and not request.user.has_perm("example.can_view_anonymized_fields"):
+            list_display = copy.deepcopy(list_display)
             list_display = self.add_anonymizable_fields_to_list_display(list_display, self.model.anonymizable_fields)
         return list_display
 
     def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
-        if obj and obj.id and not request.user.has_perm("example.can_view_anonymized_fields"):
+        if obj and obj.id and not request.user.has_perm("example.can_view_anonymized_fields") and self.is_anonymizable:
+            class ProxyOriginal:
+                def __init__(self, original_object) -> None:
+                    self.original_object = original_object
+
+                def __str__(self) -> str:
+                    if self.original_object and self.original_object.id:
+                        return _(f"Anonymized Object {self.original_object.id}")
+                    return _("Anonymized Object")
+
+                def __getattr__(self, name: str) -> Any:
+                    if not hasattr(ProxyOriginal, name):
+                        return getattr(self.original_object, name)
+                    return getattr(self, name)
+                
             context.update({
                 "subtitle": _(f"Anonymized Object {obj.id}"),
+                "original": ProxyOriginal(original_object=obj)
             })
         return super().render_change_form(request, context, add, change, form_url, obj)
+
+    # def get_inline_formsets(self, request, formsets, inline_instances, obj=None):
+    #     formsets = copy.deepcopy(formsets)
+    #     for formset in formsets:
+    #         for obj in formset.queryset:
+    #             class ProxyOriginal:
+    #                 def __init__(self, original_object) -> None:
+    #                     self.original_object = original_object
+
+    #                 def __str__(self) -> str:
+    #                     if self.original_object and self.original_object.id:
+    #                         return _(f"Anonymized Object {self.original_object.id}")
+    #                     return _("Anonymized Object")
+
+    #                 def __getattr__(self, name: str) -> Any:
+    #                     if not hasattr(ProxyOriginal, name):
+    #                         return getattr(self.original_object, name)
+    #                     return getattr(self, name)
+
+    #             obj = ProxyOriginal(original_object=obj)
+
+    #     return super().get_inline_formsets(request, formsets, inline_instances, obj=None)
 
     @classmethod
     def add_anonymizable_fields_to_list_display(cls, list_display, anonymizable_fields):
