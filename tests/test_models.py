@@ -2,18 +2,18 @@
 # -*- coding: utf-8 -*-
 
 """
-test_django-anonymizable-model
+test_anonymizable-model
 ------------
 
-Tests for `django-anonymizable-model` models module.
+Tests for `anonymizable-model` models module.
 """
 
 from django.test import TestCase
 
-from django_anonymizable_model import models
+from anonymizable_model import models
 
 
-class TestDjango_anonymizable_model(TestCase):
+class TestAnonymizableModel(TestCase):
 
     def setUp(self):
         pass

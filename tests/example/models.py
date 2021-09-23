@@ -1,6 +1,6 @@
 from django.db import models
 
-from django_anonymizable_model.decorators import anonymizable
+from anonymizable_model.decorators import anonymizable
 from tests.example.managers import ExampleGDPRModelManager, ExampleGDPRParentModelManager
 from tests.example.querysets import ExampleGDPRModelQuerySet, ExampleGDPRParentModelQuerySet
 

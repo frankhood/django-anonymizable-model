@@ -1,35 +1,35 @@
 =============================
-django-anonimizable-model
+django-anonymizable-model
 =============================
 
-.. image:: https://badge.fury.io/py/django-anonimizable-model.svg
-    :target: https://badge.fury.io/py/django-anonimizable-model
+.. image:: https://badge.fury.io/py/django-anonymizable-model.svg
+    :target: https://badge.fury.io/py/django-anonymizable-model
 
-.. image:: https://travis-ci.org/frankhood/django-anonimizable-model.svg?branch=master
-    :target: https://travis-ci.org/frankhood/django-anonimizable-model
+.. image:: https://travis-ci.org/frankhood/django-anonymizable-model.svg?branch=master
+    :target: https://travis-ci.org/frankhood/django-anonymizable-model
 
-.. image:: https://codecov.io/gh/frankhood/django-anonimizable-model/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/frankhood/django-anonimizable-model
+.. image:: https://codecov.io/gh/frankhood/django-anonymizable-model/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/frankhood/django-anonymizable-model
 
 Your project description goes here
 
 Documentation
 -------------
 
-The full documentation is at https://django-anonimizable-model.readthedocs.io.
+The full documentation is at https://django-anonymizable-model.readthedocs.io.
 
 Quickstart
 ----------
 
-Install django-anonimizable-model::
+Install django-anonymizable-model::
 
-    pip install django-anonimizable-model
+    pip install django-anonymizable-model
 
 Add it to your `INSTALLED_APPS`::
 
     INSTALLED_APPS = (
         ...
-        'django_anonimizable_model',
+        'anonymizable_model',
         ...
     )
 

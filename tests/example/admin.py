@@ -2,7 +2,7 @@ import copy
 
 from django.contrib import admin
 
-from django_anonymizable_model.admin import AnonymizableAdminMixin
+from anonymizable_model.admin import AnonymizableAdminMixin
 from tests.example.models import ExampleGDPRModel, ExampleGDPRParentModel
 
 
