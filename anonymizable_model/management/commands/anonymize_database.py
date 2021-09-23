@@ -2,7 +2,7 @@
 Anonymise all personal data in the database
 """
 from django.core.management import BaseCommand
-from django_anonymizable_model import settings as app_settings
+from anonymizable_model import settings as app_settings
 
 
 def get_anonymized_models():

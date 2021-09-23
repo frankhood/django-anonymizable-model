@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 
 class DjangoAnonymizableModelConfig(AppConfig):
-    name = 'django_anonymizable_model'
+    name = 'anonymizable_model'
