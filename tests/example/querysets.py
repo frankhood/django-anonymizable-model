@@ -7,3 +7,7 @@ class ExampleGDPRModelQuerySet(models.QuerySet):
 
 class ExampleGDPRParentModelQuerySet(models.QuerySet):
     ...
+
+
+class M2MExampleModelQuerySet(models.QuerySet):
+    ...
