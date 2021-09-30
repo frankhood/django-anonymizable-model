@@ -24,7 +24,10 @@ def anonymizable(db_label_prefix="pa_", anonymizable_fields=None):
         # for m2m fields
         for m2m_field in model_class._meta.local_many_to_many:
             if m2m_field:
-                m2m_field.db_table.replace(db_label_prefix, "")
+                if not m2m_field.db_table and db_label_prefix not in m2m_field.name:
+                    m2m_field.db_table = f"{model_class._meta.app_label}_{model_class._meta.model_name}_{m2m_field.name}"
+                elif m2m_field.db_table:
+                    m2m_field.db_table.replace(db_label_prefix, "")
 
         if "display_anonymized_FIELD" not in model_class.__dict__:
             setattr(
