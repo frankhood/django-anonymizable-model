@@ -21,9 +21,10 @@ def anonymizable(db_label_prefix="pa_", anonymizable_fields=None):
             "permissions": [("can_view_anonymized_fields", "Can view anonymized fields",)]
         })
         
-        
-        for field in model_class._meta.local_many_to_many:
-            field.db_table.replace(db_label_prefix, "")
+        # for m2m fields
+        for m2m_field in model_class._meta.local_many_to_many:
+            if m2m_field:
+                m2m_field.db_table.replace(db_label_prefix, "")
 
         if "display_anonymized_FIELD" not in model_class.__dict__:
             setattr(
