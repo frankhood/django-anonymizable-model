@@ -36,10 +36,10 @@ def anonymizable(db_label_prefix="pa_", anonymizable_fields=None):
                 display_anonymized_FIELD
             )
         for field in anonymizable_fields:
-            model_field = getattr(model_class, field)
-            new_field_column_name = db_label_prefix + model_field.field.column
-            model_field.field.db_column = new_field_column_name
-            model_field.field.column = new_field_column_name
+            model_field = model_class._meta.get_field(field)
+            new_field_column_name = db_label_prefix + model_field.column
+            model_field.db_column = new_field_column_name
+            model_field.column = new_field_column_name
             # For Admin visualization
             if 'display_anonymized_%s' % field not in model_class.__dict__:
                 def wrapped_display_anonymized_function(self):
@@ -50,7 +50,7 @@ def anonymizable(db_label_prefix="pa_", anonymizable_fields=None):
                     wrapped_display_anonymized_function,
                 )
                 method = getattr(model_class, 'display_anonymized_%s' % field)
-                method.short_description = _(model_field.field.verbose_name)
+                method.short_description = _(model_field.verbose_name)
         return model_class
     return wrap
 
