@@ -1,0 +1,7 @@
+invoke
+twine
+wheel
+zest.releaser
+bumpversion
+importlib-resources>=1.0
+importlib-metadata<4.3
