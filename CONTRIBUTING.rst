@@ -36,8 +36,8 @@ is open to whoever wants to implement it.
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
-anonymizable-model could always use more documentation, whether as part of the 
-official anonymizable-model docs, in docstrings, or even on the web in blog posts,
+Django Anonymizable Model could always use more documentation, whether as part of the 
+official Django Anonymizable Model docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 Submit Feedback

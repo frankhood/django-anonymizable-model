@@ -3,4 +3,6 @@ include CONTRIBUTING.rst
 include HISTORY.rst
 include LICENSE
 include README.rst
+include requirements_test.txt
+include requirements.txt
 recursive-include anonymizable_model *.html *.png *.gif *js *.css *jpg *jpeg *svg *py

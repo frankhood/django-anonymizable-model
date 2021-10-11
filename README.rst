@@ -1,15 +1,16 @@
 =============================
-django-anonymizable-model
+Django Anonymizable Model
 =============================
 
-.. image:: https://badge.fury.io/py/django-anonymizable-model.svg
+.. image:: https://badge.fury.io/py/django-anonymizable-model.svg/?style=flat-square
     :target: https://badge.fury.io/py/django-anonymizable-model
 
-.. image:: https://travis-ci.org/frankhood/django-anonymizable-model.svg?branch=master
-    :target: https://travis-ci.org/frankhood/django-anonymizable-model
+.. image:: https://readthedocs.org/projects/pip/badge/?version=latest&style=flat-square
+    :target: https://django-anonymizable-model.readthedocs.io/en/latest/
 
-.. image:: https://codecov.io/gh/frankhood/django-anonymizable-model/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/frankhood/django-anonymizable-model
+.. image:: https://img.shields.io/coveralls/github/frankhood/django-anonymizable-model/master?style=flat-square
+    :target: https://coveralls.io/github/frankhood/django-anonymizable-model?branch=master
+    :alt: Coverage Status
 
 Your project description goes here
 
@@ -100,8 +101,8 @@ Does the code actually work?
 ::
 
     source <YOURVIRTUALENV>/bin/activate
-    (myenv) $ pip install -r requirements_test.txt
-    (myenv) $ python manage.py test tests.example
+    (myenv) $ pip install tox
+    (myenv) $ tox
 
 
 Development commands
@@ -110,6 +111,7 @@ Development commands
 ::
 
     pip install -r requirements_dev.txt
+    invoke -l
 
 
 Credits

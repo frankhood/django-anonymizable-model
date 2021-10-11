@@ -2,17 +2,17 @@
 Usage
 =====
 
-To use django-anonymizable-model in a project, add it to your `INSTALLED_APPS`:
+To use Django Anonymizable Model in a project, add it to your `INSTALLED_APPS`:
 
 .. code-block:: python
 
     INSTALLED_APPS = (
         ...
-        'anonymizable_model',
+        'anonymizable_model.apps.AnonymizableModelConfig',
         ...
     )
 
-Add django-anonymizable-model's URL patterns:
+Add Django Anonymizable Model's URL patterns:
 
 .. code-block:: python
 
