@@ -1,4 +1,4 @@
-* django-anonymizable-model version:
+* Django Anonymizable Model version:
 * Django version:
 * Python version:
 * Operating System:

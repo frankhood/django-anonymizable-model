@@ -5,7 +5,7 @@ Credits
 Development Lead
 ----------------
 
-* Django Anonymizable Model <info@frankhood.it>
+* FrankHood Business Solutions srl <info@frankhood.it>
 
 Contributors
 ------------

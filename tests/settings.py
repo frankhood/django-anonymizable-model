@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "im=wq%p5fpbgvp7dbivjfxcy*p)j5w)_%fmdq!$on=0dl+=c*e"
+SECRET_KEY = "c45=7w(k@e+g0%ukk=q80sz9pm_61weqt!^ii1qf_=s!%gfwob"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'anonymizable_model',
-
+    
 
     # if your app has other dependencies that need to be added to the site
     # they should be added here
@@ -114,4 +114,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-DJANGO_ANONYMIZE_CAN_ANONYMIZE_DATABASE = True
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -11,7 +11,8 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys, os
+import os
+import sys
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -46,8 +47,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'anonymizable-model'
-copyright = u'2021, Django Anonymizable Model'
+project = u'Django Anonymizable Model'
+copyright = u'2021, FrankHood Business Solutions srl'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -173,7 +174,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'anonymizable-modeldoc'
+htmlhelp_basename = 'django-anonymizable-modeldoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -192,8 +193,8 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'anonymizable-model.tex', u'anonymizable-model Documentation',
-   u'Django Anonymizable Model', 'manual'),
+  ('index', 'django-anonymizable-model.tex', u'Django Anonymizable Model Documentation',
+   u'FrankHood Business Solutions srl', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -222,8 +223,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'anonymizable-model', u'anonymizable-model Documentation',
-     [u'Django Anonymizable Model'], 1)
+    ('index', 'django-anonymizable-model', u'Django Anonymizable Model Documentation',
+     [u'FrankHood Business Solutions srl'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -236,8 +237,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'anonymizable-model', u'anonymizable-model Documentation',
-   u'Django Anonymizable Model', 'anonymizable-model', 'One line description of project.',
+  ('index', 'django-anonymizable-model', u'Django Anonymizable Model Documentation',
+   u'FrankHood Business Solutions srl', 'django-anonymizable-model', 'One line description of project.',
    'Miscellaneous'),
 ]
 
